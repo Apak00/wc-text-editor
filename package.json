@@ -1,0 +1,25 @@
+{
+  "name": "adesso-text-editor",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./dist/main.js",
+  "scripts": {
+    "test": "jest",
+    "start": "webpack-dev-server --mode='development' --open",
+    "build": "webpack --mode='production' && open ./dist/index.html",
+    "yolo": "webpack --mode='production' && git add . && git commit -m 'classic comment' && git push && npm version patch && npm publish"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
+    "jest": "^23.6.0",
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
