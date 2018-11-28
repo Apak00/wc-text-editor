@@ -21,7 +21,7 @@ import "./editor-button";
         
         </editor-button>
         <div class="editor" contenteditable>
-            Simple text editor
+            Simple text editor!
         </div>
     </div>
     `;
