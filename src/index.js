@@ -1,28 +1,33 @@
+import "./editor-button";
+
 (function () {
-    const containerTemplate = document.createElement("template");
-    containerTemplate.innerHTML = `
+    const Container = document.createElement("template");
+    Container.innerHTML = `
     <style>
-        .container{
-             border: steelblue 1px solid;
+        :host(.adesso-text-editor) {
+            margin:20px;
+            flex:1;
+        }
+        .container {
+             border: #dfdfdf 1px solid;
              border-radius: 6px;
              flex:1;
-             background-color: red;
+             background-color: #f1f1f1;
+             padding: 16px;
         }
     </style>
     <div class="container">
-        <button class="tool-items fas fa-stroopwafel"  onclick="document.execCommand('underline', false, '');">
+        <editor-button data-cmd="underline" data-default-ui="false" data-cmd-value="">
         
-        </button>
-        <div class="center">
-            <div class="editor" contenteditable>
-                <h1>Simple Html editor</h1>
-            </div>
+        </editor-button>
+        <div class="editor" contenteditable>
+            Simple text editor
         </div>
     </div>
     `;
     
     
-    class AdessoInput extends HTMLElement {
+    class AdessoTextEditor extends HTMLElement {
         constructor() {
             super();
             
@@ -34,30 +39,7 @@
         
         
         init() {
-            const container = document.createElement("div");
-            container.innerHTML = `
-            <style>
-        .container{
-             border: steelblue 1px solid;
-             border-radius: 6px;
-             flex:1;
-             background-color: red;
-        }
-        .fas{
-            color:blue;
-        }
-    </style>
-    <div class="container">
-        <button class="tool-items fas fa-stroopwafel"  onclick="document.execCommand('underline', false, '');">
-        
-        </button>
-        <div class="center">
-            <div class="editor" contenteditable>
-                <h1>Simple Html editor</h1>
-            </div>
-        </div>
-    </div>
-            `;
+            let container = document.importNode(Container,true).content;
             this.shadowRoot.appendChild(container);
         }
         
@@ -78,6 +60,6 @@
         }
     }
     
-    customElements.define("adesso-text-editor", AdessoInput);
+    customElements.define("adesso-text-editor", AdessoTextEditor);
 }());
 
