@@ -1,7 +1,7 @@
 import "./editor-button";
 
 (function () {
-    const Container = document.createElement("template");
+    const Container = document.createElement("div");
     Container.innerHTML = `
     <style>
         :host(.adesso-text-editor) {
@@ -15,13 +15,21 @@ import "./editor-button";
              background-color: #f1f1f1;
              padding: 16px;
         }
+        .panel{
+            margin-bottom: 20px;
+        }
+        .editor{
+            border: #dfdfdf 1px solid;
+            padding:10px;
+        }
     </style>
     <div class="container">
-        <editor-button data-cmd="underline" data-default-ui="false" data-cmd-value="">
-        
-        </editor-button>
-        <div class="editor" contenteditable>
-            Simple text editor!
+        <div class="panel">
+            <editor-button data-cmd="underline" data-default-ui="false" data-cmd-value="">
+            </editor-button>
+        </div>
+        <div name="editor" class="editor" contenteditable>
+            Simple <em>text</em> editor
         </div>
     </div>
     `;
@@ -31,18 +39,13 @@ import "./editor-button";
         constructor() {
             super();
             
-            
-            this.attachShadow({mode: "open"});
-            
-            this.init();
         }
         
-        
-        init() {
-            let container = document.importNode(Container,true).content;
-            this.shadowRoot.appendChild(container);
+        connectedCallback() {
+            if (!this.hasChildNodes()) {
+                this.appendChild(Container);
+            }
         }
-        
         
         attributeChangedCallback(name, oldValue, newValue) {
             console.log(`${name} changed from ${oldValue} to ${newValue}`);
