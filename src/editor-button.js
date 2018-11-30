@@ -21,34 +21,31 @@
                     console.log("BUTTON CLICKED");
                     const editor = document.querySelector(".editor");
                     
-                    var sel, range, text;
+                    var sel, range, text, start, end, parent, textContent;
                     if (window.getSelection()) {
                         sel = window.getSelection();
-                        text = sel.toString();
                         range = sel.getRangeAt(0);
                         
-                        const serializer = new XMLSerializer();
-                        const document_fragment_string = serializer.serializeToString(range.cloneContents());
                         
-                        console.log(document_fragment_string);
-                        if (this.isDescendantOrSame(editor, range.commonAncestorContainer)) {
-                            if (!this.hasParentTagged("u", range.commonAncestorContainer)) {
-                                console.log("no parent tag present");
-                                let u = document.createElement("u");
-                                u.innerHTML = `${document_fragment_string}`;
-                                
-                                range.deleteContents();
-                                range.insertNode(u);
-                                
-                                
-                            } else if (range.commonAncestorContainer.parentNode.textContent.trim() === text) {
-                                console.log("tag present and selection capsulates tag");
-                                
-                            } else {
-                                console.log("tag present but selection does not capsulate tag");
-                                
+                        if (!range.collapsed) {
+                            let wrapper = document.createElement("span");
+                            wrapper.setAttribute("class", "selection_wrapper");
+                            range.surroundContents(wrapper);
+                            parent = wrapper.parentNode;
+                            
+                            if (this.isDescendantOrSame(editor, range.commonAncestorContainer)) {
+                                if (!this.hasParentTagged("u", range.commonAncestorContainer)) {
+                                    wrapper.outerHTML = `<u>${wrapper.innerHTML}</u>`;
+                                } else if (parent.localName === "u" && !parent.firstChild.data && !parent.lastChild.data && parent.childNodes.length === 3) {
+                                    console.log("tag present and selection capsulates tag");
+                                    wrapper.parentNode.outerHTML = wrapper.innerHTML;
+                                } else {
+                                    console.log("tag present but selection does not capsulate tag");
+                                    wrapper.outerHTML = wrapper.innerHTML;
+                                }
                             }
                         }
+                        
                     }
                 }
             });

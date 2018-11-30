@@ -28,9 +28,7 @@ import "./editor-button";
             <editor-button data-cmd="underline" data-default-ui="false" data-cmd-value="">
             </editor-button>
         </div>
-        <div name="editor" class="editor" contenteditable>
-            Simple <em>text</em> editor
-        </div>
+        <div name="editor" class="editor" contenteditable>Simple <em>text</em> editor</div>
     </div>
     `;
     
@@ -44,6 +42,7 @@ import "./editor-button";
         connectedCallback() {
             if (!this.hasChildNodes()) {
                 this.appendChild(Container);
+                document.querySelector(".editor").innerHTML = document.querySelector(".editor").innerHTML.trim();
             }
         }
         
