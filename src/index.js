@@ -25,11 +25,12 @@ import "./editor-button";
     </style>
     <div class="container">
         <div class="panel">
-            <editor-button data-cmd="bold" data-tag="strong" data-default-ui="false" data-cmd-value="">
+            <editor-button data-cmd="bold" data-tag="strong">
             </editor-button>
-            <editor-button data-cmd="underline" data-tag="u" data-default-ui="false" data-cmd-value="">
+            <editor-button data-cmd="underline" data-tag="u">
             </editor-button>
-            
+            <editor-button data-cmd="italic" data-tag="em">
+            </editor-button>
         </div>
         <div name="editor" class="editor" contenteditable>Simple <em>text</em> editor</div>
     </div>

@@ -25,7 +25,6 @@
                                 if (!this.hasParentTagged(tag, wrapper)) {
                                     console.log("tag does not present");
                                     const regex = new RegExp(`<${tag}>|</${tag}>`, "g");
-                                    console.log(regex)
                                     wrapper.outerHTML = `<${tag}>${wrapper.innerHTML.replace(regex, "")}</${tag}>`;
                                 } else if (parent.localName === tag && !parent.firstChild.data && !parent.lastChild.data && parent.childNodes.length === 3) {
                                     console.log("tag present and selection encapsulates the content inside of tag");
@@ -39,6 +38,8 @@
                         }
                         // replace empty tags with ""
                         editor.innerHTML = editor.innerHTML.replace(/<([a-z]*)><\/\1>/g, "");
+                        // remove adjacent tags with a single tag
+                        editor.innerHTML = editor.innerHTML.replace(/<\/([a-z]*)><\1>/g, "");
                     }
                 }
             );
@@ -71,6 +72,8 @@
             container.innerHTML = `
                 <style>
                 i{
+                    width: 20px;
+                    height: 20px;
                     font-size: 20px;
                     color: steelblue;
                 }
@@ -86,7 +89,6 @@
             console.log(`${name} changed from ${oldValue} to ${newValue}`);
             switch (name) {
                 case "data-cmd":
-                    console.log("cmd prop changed");
                     this.querySelector("i").setAttribute("class", `fas fa-${newValue}`);
                     break;
                 default:
@@ -106,26 +108,6 @@
         
         set cmd(value) {
             this.setAttribute("data-cmd", value);
-        }
-        
-        get defaultUI() {
-            return this.getAttribute("data-default-ui");
-        }
-        
-        set defaultUI(value) {
-            const defaultUI = Boolean(value);
-            if (defaultUI)
-                this.setAttribute('data-default-ui', '');
-            else
-                this.removeAttribute('data-default-ui');
-        }
-        
-        get cmdValue() {
-            return this.getAttribute("data-default-ui");
-        }
-        
-        set cmdValue(value) {
-            this.setAttribute("data-cmd-value", value);
         }
         
         get tag() {
