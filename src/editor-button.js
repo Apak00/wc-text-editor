@@ -36,10 +36,7 @@
                                 }
                             }
                         }
-                        // replace empty tags with ""
-                        editor.innerHTML = editor.innerHTML.replace(/<([a-z]*)><\/\1>/g, "");
-                        // remove adjacent tags with a single tag
-                        editor.innerHTML = editor.innerHTML.replace(/<\/([a-z]*)><\1>/g, "");
+                        this.clearDuplicateTags(editor);
                     }
                 }
             );
@@ -47,6 +44,12 @@
             this.init();
         }
         
+        clearDuplicateTags(editor) {
+            // replace empty tags with ""
+            editor.innerHTML = editor.innerHTML.replace(/<([a-z]*)><\/\1>/g, "");
+            // remove adjacent tags with a single tag
+            editor.innerHTML = editor.innerHTML.replace(/<\/([a-z]*)><\1>/g, "");
+        }
         
         isDescendantOrSame(parent, child) {
             if (child) {

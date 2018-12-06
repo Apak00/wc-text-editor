@@ -4,7 +4,6 @@
     <list default="true" id="566ecd71-85b4-4ee2-815a-b5b4b934ead7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/editor-button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor-button.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -51,7 +50,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="76" />
-          <entry key="js" value="9586" />
+          <entry key="js" value="9634" />
           <entry key="json" value="104" />
           <entry key="md" value="51" />
         </counts>
@@ -60,7 +59,7 @@
         <counts>
           <entry key="HTML" value="155" />
           <entry key="JSON" value="104" />
-          <entry key="JavaScript" value="9506" />
+          <entry key="JavaScript" value="9554" />
           <entry key="Markdown" value="51" />
           <entry key="RegExp" value="1" />
         </counts>
@@ -72,8 +71,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/editor-button.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="75" column="33" lean-forward="true" selection-start-line="75" selection-start-column="33" selection-end-line="75" selection-end-column="33" />
+            <state relative-caret-position="364">
+              <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -238,18 +237,18 @@
       <workItem from="1543472685346" duration="17031000" />
       <workItem from="1543558410142" duration="13044000" />
       <workItem from="1543817020337" duration="18419000" />
-      <workItem from="1544091741265" duration="1209000" />
+      <workItem from="1544091741265" duration="1619000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66779000" />
+    <option name="totallyTimeSpent" value="67189000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15785764" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15785764" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -261,7 +260,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.26385543" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.26385543" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -347,8 +346,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/editor-button.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="75" column="33" lean-forward="true" selection-start-line="75" selection-start-column="33" selection-end-line="75" selection-end-column="33" />
+        <state relative-caret-position="364">
+          <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
         </state>
       </provider>
     </entry>
