@@ -32,7 +32,7 @@ import "./editor-button";
             <editor-button data-cmd="italic" data-tag="em">
             </editor-button>
         </div>
-        <div name="editor" class="editor" contenteditable>Simple <em>text</em> editor</div>
+        <div name="editor" class="editor" contenteditable>Simple text editor</div>
     </div>
     `;
     
@@ -41,12 +41,45 @@ import "./editor-button";
         constructor() {
             super();
             
+            Object.defineProperty(this, "onClick", {
+                value: (e) => {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    if (window.getSelection()) {
+                        let sel = window.getSelection();
+                        let range = sel.getRangeAt(0);
+                        let ancestorNode = range.commonAncestorContainer;
+                        let activeButtonSet = this.addTags(ancestorNode, new Set([]));
+                
+                        this.querySelectorAll("editor-button").forEach(node => {
+                            if (activeButtonSet.has(node.getAttribute("data-tag"))) {
+                                node.setAttribute("data-active", "")
+                            } else {
+                                node.removeAttribute("data-active")
+                            }
+                        });
+                    }
+                }
+            });
+            
+        }
+        
+        
+        addTags(node, set) {
+            if (node) {
+                if (node.isEqualNode(document.querySelector(".editor")))
+                    return set;
+                if (node.localName)
+                    set.add(node.localName);
+            }
+            return this.addTags(node.parentNode, set)
+            
         }
         
         connectedCallback() {
             if (!this.hasChildNodes()) {
                 this.appendChild(Container);
-                document.querySelector(".editor").innerHTML = document.querySelector(".editor").innerHTML.trim();
+                document.querySelector(".editor").addEventListener("click", this.onClick)
             }
         }
         

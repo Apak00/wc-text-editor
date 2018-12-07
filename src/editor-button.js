@@ -80,6 +80,10 @@
                     font-size: 20px;
                     color: steelblue;
                 }
+                .active, .active > i{
+                    background-color: steelblue;
+                    color: #f1f1f1;
+                }
                 </style>
                 <i></i>
                 `;
@@ -94,14 +98,16 @@
                 case "data-cmd":
                     this.querySelector("i").setAttribute("class", `fas fa-${newValue}`);
                     break;
+                case "data-active":
+                    this.querySelector("button").setAttribute("class", this.active ? "active" : "");
+                    break;
                 default:
                     break;
             }
         }
         
-        static
-        get observedAttributes() {
-            return ["data-cmd", "data-tag", "data-default-ui", "data-cmd-value"];
+        static get observedAttributes() {
+            return ["data-cmd", "data-tag", "data-active",];
         }
         
         
@@ -119,6 +125,18 @@
         
         set tag(value) {
             this.setAttribute("data-tag", value);
+        }
+        
+        get active() {
+            return this.hasAttribute("data-active");
+        }
+        
+        set active(value) {
+            const active = Boolean(value);
+            if (active)
+                this.setAttribute('data-active', '');
+            else
+                this.removeAttribute('data-active');
         }
     }
     
