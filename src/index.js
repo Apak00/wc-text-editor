@@ -36,7 +36,7 @@ import "./editor-button";
             <editor-button data-cmd="italic" data-tag="em">
             </editor-button>
         </div>
-        <div class="editor" contenteditable><div>Simple text editor</div></div>
+        <div class="editor" contenteditable><div><u>Simple t</u>ext editor</div></div>
     </div>
     `;
     

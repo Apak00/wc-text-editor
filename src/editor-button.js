@@ -5,17 +5,22 @@
             super();
             
             Object.defineProperty(this, "cmdEvent", {
-                    value: () => {
-                        let paragraph, sel, range, parent;
+                    value: (e) => {
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
+                        let paragraph, sel, range, parent, saved;
                         const editorContainer = document.querySelector(".editor");
                         this.active = !this.active;
                         const tag = this.tag;
+                        
+                        let focus, offset;
                         
                         if (window.getSelection()) {
                             sel = window.getSelection();
                             range = sel.getRangeAt(0);
                             const wrapper = document.createElement("span");
                             wrapper.setAttribute("class", "selection-wrapper");
+                            
                             
                             if (this.isDescendantOrSame(editorContainer, range.commonAncestorContainer)) {
                                 const collapsed = range.collapsed;
@@ -29,26 +34,40 @@
                                     if (!this.hasParentTagged(tag, wrapper)) {
                                         console.log("tag does not present");
                                         const regex = new RegExp(`<${tag}>|</${tag}>`, "g");
-                                        wrapper.outerHTML = `<${tag}>${wrapper.innerHTML.replace(regex, "")}</${tag}>`;
+                                        wrapper.outerHTML = `<${tag}>${wrapper.outerHTML.replace(regex, "")}</${tag}>`;
                                     } else if (parent.localName === tag && !parent.firstChild.data && !parent.lastChild.data && parent.childNodes.length === 3) {
                                         console.log("tag present and selection encapsulates the content inside of tag");
-                                        wrapper.parentNode.outerHTML = wrapper.innerHTML;
+                                        wrapper.parentNode.outerHTML = wrapper.outerHTML;
                                     } else {
                                         console.log("tag present but selection does not encapsulate tag");
                                         parent = this.hasParentTagged(tag, wrapper);
-                                        parent.outerHTML = parent.outerHTML.replace(/<span class="selection-wrapper">.*<\/span>/g, `</${tag}>${wrapper.innerHTML}<${tag}>`);
+                                        parent.outerHTML = parent.outerHTML.replace(/<span class="selection-wrapper">.*<\/span>/g, `</${tag}>${wrapper.outerHTML}<${tag}>`);
                                     }
                                 } else {
                                     // collapsed selection exists in editor node
                                     if (!this.hasParentTagged(tag, wrapper)) {
                                         console.log("tag does not present");
-                                        wrapper.outerHTML = `<${tag}>${wrapper.innerHTML}</${tag}>`;
+                                        wrapper.outerHTML = `<${tag}>${wrapper.outerHTML}</${tag}>`;
                                     } else {
                                         console.log("tag presents");
-                                        wrapper.outerHTML = `</${tag}>${wrapper.innerHTML}<${tag}>`;
+                                        wrapper.outerHTML = `</${tag}>${wrapper.outerHTML}<${tag}>`;
                                     }
                                 }
+                                
                                 this.clearDuplicateTags(paragraph);
+                                
+                                let wrapperNode = document.querySelector(".selection-wrapper");
+                                
+                                if (window.getSelection) {
+                                    let sel = window.getSelection();
+                                    let rr = sel.getRangeAt(0);
+                                    
+                                    rr.setStart(wrapperNode, 0);
+                                    sel.removeAllRanges();
+                                    sel.addRange(rr);
+                                }
+                                
+                                wrapperNode.outerHTML = wrapperNode.innerHTML;
                             }
                         }
                     }
@@ -63,6 +82,7 @@
             paragraph.innerHTML = paragraph.innerHTML.replace(/<([a-z]*)><\/\1>/g, "");
             // remove adjacent tags with a single tag
             paragraph.innerHTML = paragraph.innerHTML.replace(/<\/([a-z]*)><\1>/g, "");
+            // remove extra tag
         }
         
         isDescendantOrSame(parent, child) {
