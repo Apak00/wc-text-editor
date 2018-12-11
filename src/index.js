@@ -22,6 +22,10 @@ import "./editor-button";
             border: #dfdfdf 1px solid;
             padding:10px;
         }
+        .editor > div {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
     </style>
     <div class="container">
         <div class="panel">
@@ -32,7 +36,7 @@ import "./editor-button";
             <editor-button data-cmd="italic" data-tag="em">
             </editor-button>
         </div>
-        <div name="editor" class="editor" contenteditable>Simple text editor</div>
+        <div class="editor" contenteditable><div>Simple text editor</div></div>
     </div>
     `;
     
@@ -50,7 +54,7 @@ import "./editor-button";
                         let range = sel.getRangeAt(0);
                         let ancestorNode = range.commonAncestorContainer;
                         let activeButtonSet = this.addTags(ancestorNode, new Set([]));
-                
+                        
                         this.querySelectorAll("editor-button").forEach(node => {
                             if (activeButtonSet.has(node.getAttribute("data-tag"))) {
                                 node.setAttribute("data-active", "")
@@ -83,20 +87,6 @@ import "./editor-button";
             }
         }
         
-        attributeChangedCallback(name, oldValue, newValue) {
-            console.log(`${name} changed from ${oldValue} to ${newValue}`);
-            switch (name) {
-                case "some":
-                    console.log("some prop changed");
-                    break;
-                default:
-                    break;
-            }
-        }
-        
-        static get observedAttributes() {
-            return ["some"];
-        }
     }
     
     customElements.define("adesso-text-editor", AdessoTextEditor);

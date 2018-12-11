@@ -6,37 +6,51 @@
             
             Object.defineProperty(this, "cmdEvent", {
                     value: () => {
-                        console.log("BUTTON CLICKED");
-                        const editor = document.querySelector(".editor");
-                        
-                        let sel, range, parent;
+                        let paragraph, sel, range, parent;
+                        const editorContainer = document.querySelector(".editor");
+                        this.active = !this.active;
                         const tag = this.tag;
+                        
                         if (window.getSelection()) {
                             sel = window.getSelection();
                             range = sel.getRangeAt(0);
-                            if (!range.collapsed && this.isDescendantOrSame(editor, range.commonAncestorContainer)) {
-                                
-                                const wrapper = document.createElement("span");
-                                wrapper.setAttribute("class", "selection-wrapper");
+                            const wrapper = document.createElement("span");
+                            wrapper.setAttribute("class", "selection-wrapper");
+                            
+                            if (this.isDescendantOrSame(editorContainer, range.commonAncestorContainer)) {
+                                const collapsed = range.collapsed;
                                 wrapper.appendChild(range.extractContents());
                                 range.insertNode(wrapper);
-                                parent = wrapper.parentNode;
+                                paragraph = this.hasParentTagged("div", wrapper);
                                 
-                                if (!this.hasParentTagged(tag, wrapper)) {
-                                    console.log("tag does not present");
-                                    const regex = new RegExp(`<${tag}>|</${tag}>`, "g");
-                                    wrapper.outerHTML = `<${tag}>${wrapper.innerHTML.replace(regex, "")}</${tag}>`;
-                                } else if (parent.localName === tag && !parent.firstChild.data && !parent.lastChild.data && parent.childNodes.length === 3) {
-                                    console.log("tag present and selection encapsulates the content inside of tag");
-                                    wrapper.parentNode.outerHTML = wrapper.innerHTML;
+                                if (!collapsed) {
+                                    // wrapped selection  in editor node
+                                    parent = wrapper.parentNode;
+                                    if (!this.hasParentTagged(tag, wrapper)) {
+                                        console.log("tag does not present");
+                                        const regex = new RegExp(`<${tag}>|</${tag}>`, "g");
+                                        wrapper.outerHTML = `<${tag}>${wrapper.innerHTML.replace(regex, "")}</${tag}>`;
+                                    } else if (parent.localName === tag && !parent.firstChild.data && !parent.lastChild.data && parent.childNodes.length === 3) {
+                                        console.log("tag present and selection encapsulates the content inside of tag");
+                                        wrapper.parentNode.outerHTML = wrapper.innerHTML;
+                                    } else {
+                                        console.log("tag present but selection does not encapsulate tag");
+                                        parent = this.hasParentTagged(tag, wrapper);
+                                        parent.outerHTML = parent.outerHTML.replace(/<span class="selection-wrapper">.*<\/span>/g, `</${tag}>${wrapper.innerHTML}<${tag}>`);
+                                    }
                                 } else {
-                                    console.log("tag present but selection does not encapsulate tag");
-                                    parent = this.hasParentTagged(tag, wrapper);
-                                    parent.outerHTML = parent.outerHTML.replace(/<span class="selection-wrapper">.*<\/span>/g, `</${tag}>${wrapper.innerHTML}<${tag}>`);
+                                    // collapsed selection exists in editor node
+                                    if (!this.hasParentTagged(tag, wrapper)) {
+                                        console.log("tag does not present");
+                                        wrapper.outerHTML = `<${tag}>${wrapper.innerHTML}</${tag}>`;
+                                    } else {
+                                        console.log("tag presents");
+                                        wrapper.outerHTML = `</${tag}>${wrapper.innerHTML}<${tag}>`;
+                                    }
                                 }
+                                this.clearDuplicateTags(paragraph);
                             }
                         }
-                        this.clearDuplicateTags(editor);
                     }
                 }
             );
@@ -44,11 +58,11 @@
             this.init();
         }
         
-        clearDuplicateTags(editor) {
+        clearDuplicateTags(paragraph) {
             // replace empty tags with ""
-            editor.innerHTML = editor.innerHTML.replace(/<([a-z]*)><\/\1>/g, "");
+            paragraph.innerHTML = paragraph.innerHTML.replace(/<([a-z]*)><\/\1>/g, "");
             // remove adjacent tags with a single tag
-            editor.innerHTML = editor.innerHTML.replace(/<\/([a-z]*)><\1>/g, "");
+            paragraph.innerHTML = paragraph.innerHTML.replace(/<\/([a-z]*)><\1>/g, "");
         }
         
         isDescendantOrSame(parent, child) {
