@@ -45,7 +45,7 @@ import "./editor-button";
         constructor() {
             super();
             
-            Object.defineProperty(this, "onClick", {
+            Object.defineProperty(this, "calculateActiveTagsOnClick", {
                 value: (e) => {
                     e.preventDefault();
                     e.stopImmediatePropagation();
@@ -53,7 +53,7 @@ import "./editor-button";
                         let sel = window.getSelection();
                         let range = sel.getRangeAt(0);
                         let ancestorNode = range.commonAncestorContainer;
-                        let activeButtonSet = this.addTags(ancestorNode, new Set([]));
+                        let activeButtonSet = this.addTags(ancestorNode, new Set());
                         
                         this.querySelectorAll("editor-button").forEach(node => {
                             if (activeButtonSet.has(node.getAttribute("data-tag"))) {
@@ -83,7 +83,7 @@ import "./editor-button";
         connectedCallback() {
             if (!this.hasChildNodes()) {
                 this.appendChild(Container);
-                document.querySelector(".editor").addEventListener("click", this.onClick)
+                document.querySelector(".editor").addEventListener("click", this.calculateActiveTagsOnClick);
             }
         }
         

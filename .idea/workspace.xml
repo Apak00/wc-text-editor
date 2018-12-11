@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="566ecd71-85b4-4ee2-815a-b5b4b934ead7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.watchmanconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/editor-button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor-button.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
@@ -57,7 +56,7 @@
         <counts>
           <entry key="gitignore" value="17" />
           <entry key="html" value="158" />
-          <entry key="js" value="15922" />
+          <entry key="js" value="16639" />
           <entry key="json" value="104" />
           <entry key="md" value="51" />
         </counts>
@@ -66,7 +65,7 @@
         <counts>
           <entry key="HTML" value="252" />
           <entry key="JSON" value="104" />
-          <entry key="JavaScript" value="15827" />
+          <entry key="JavaScript" value="16544" />
           <entry key="Markdown" value="51" />
           <entry key="PLAIN_TEXT" value="17" />
           <entry key="RegExp" value="1" />
@@ -76,20 +75,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/editor-button.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="57" column="55" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="55" />
+            <state relative-caret-position="310">
+              <caret line="58" selection-start-line="58" selection-end-line="58" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-340">
-              <caret line="38" column="64" selection-start-line="38" selection-start-column="64" selection-end-line="38" selection-end-column="64" />
+            <state relative-caret-position="259">
+              <caret line="61" column="60" selection-start-line="61" selection-start-column="60" selection-end-line="61" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -148,8 +147,8 @@
         <option value="$PROJECT_DIR$/src/stackoverflow.js" />
         <option value="$PROJECT_DIR$/dist/index.html" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
-        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/editor-button.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
       </list>
     </option>
   </component>
@@ -250,12 +249,12 @@
       <workItem from="1544091741265" duration="9907000" />
       <workItem from="1544163984221" duration="10076000" />
       <workItem from="1544424850187" duration="11672000" />
-      <workItem from="1544519973403" duration="10783000" />
+      <workItem from="1544519973403" duration="15292000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108008000" />
+    <option name="totallyTimeSpent" value="112517000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -270,7 +269,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20225511" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20225511" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -282,7 +281,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32891566" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.23253012" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.23253012" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -373,17 +372,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
+    <entry file="file://$PROJECT_DIR$/src/editor-button.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-340">
-          <caret line="38" column="64" selection-start-line="38" selection-start-column="64" selection-end-line="38" selection-end-column="64" />
+        <state relative-caret-position="310">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor-button.js">
+    <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="57" column="55" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="55" />
+        <state relative-caret-position="259">
+          <caret line="61" column="60" selection-start-line="61" selection-start-column="60" selection-end-line="61" selection-end-column="60" />
         </state>
       </provider>
     </entry>

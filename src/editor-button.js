@@ -8,12 +8,11 @@
                     value: (e) => {
                         e.preventDefault();
                         e.stopImmediatePropagation();
-                        let paragraph, sel, range, parent, saved;
-                        const editorContainer = document.querySelector(".editor");
+                        let paragraph, sel, range, parent;
+                        const editor = document.querySelector(".editor");
                         this.active = !this.active;
                         const tag = this.tag;
                         
-                        let focus, offset;
                         
                         if (window.getSelection()) {
                             sel = window.getSelection();
@@ -22,7 +21,7 @@
                             wrapper.setAttribute("class", "selection-wrapper");
                             
                             
-                            if (this.isDescendantOrSame(editorContainer, range.commonAncestorContainer)) {
+                            if (this.isDescendantOrSame(editor, range.commonAncestorContainer)) {
                                 const collapsed = range.collapsed;
                                 wrapper.appendChild(range.extractContents());
                                 range.insertNode(wrapper);
@@ -57,12 +56,11 @@
                                 this.clearDuplicateTags(paragraph);
                                 
                                 let wrapperNode = document.querySelector(".selection-wrapper");
-                                
                                 if (window.getSelection) {
                                     let sel = window.getSelection();
                                     let rr = sel.getRangeAt(0);
                                     
-                                    rr.setStart(wrapperNode, 0);
+                                    rr.setStartAfter(wrapperNode.parentNode);
                                     sel.removeAllRanges();
                                     sel.addRange(rr);
                                 }
