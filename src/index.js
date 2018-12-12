@@ -22,6 +22,9 @@ import "./editor-button";
             border: #dfdfdf 1px solid;
             padding:10px;
         }
+        .editor:focus{
+            outline:none;
+        }
         .editor > div {
             padding-top: 20px;
             padding-bottom: 20px;
@@ -39,12 +42,11 @@ import "./editor-button";
         <div class="editor" contenteditable><div><u>Simple t</u>ext editor</div></div>
     </div>
     `;
-    
-    
+
     class AdessoTextEditor extends HTMLElement {
         constructor() {
             super();
-            
+
             Object.defineProperty(this, "calculateActiveTagsOnClick", {
                 value: (e) => {
                     e.preventDefault();
@@ -54,7 +56,7 @@ import "./editor-button";
                         let range = sel.getRangeAt(0);
                         let ancestorNode = range.commonAncestorContainer;
                         let activeButtonSet = this.addTags(ancestorNode, new Set());
-                        
+
                         this.querySelectorAll("editor-button").forEach(node => {
                             if (activeButtonSet.has(node.getAttribute("data-tag"))) {
                                 node.setAttribute("data-active", "")
@@ -65,10 +67,8 @@ import "./editor-button";
                     }
                 }
             });
-            
         }
-        
-        
+
         addTags(node, set) {
             if (node) {
                 if (node.isEqualNode(document.querySelector(".editor")))
@@ -77,18 +77,17 @@ import "./editor-button";
                     set.add(node.localName);
             }
             return this.addTags(node.parentNode, set)
-            
         }
-        
+
         connectedCallback() {
             if (!this.hasChildNodes()) {
                 this.appendChild(Container);
                 document.querySelector(".editor").addEventListener("click", this.calculateActiveTagsOnClick);
             }
         }
-        
+
     }
-    
+
     customElements.define("adesso-text-editor", AdessoTextEditor);
 }());
 
