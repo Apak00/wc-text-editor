@@ -49,8 +49,6 @@ import "./editor-button";
 
             Object.defineProperty(this, "calculateActiveTagsOnClick", {
                 value: (e) => {
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
                     if (window.getSelection()) {
                         let sel = window.getSelection();
                         let range = sel.getRangeAt(0);
