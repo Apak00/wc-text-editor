@@ -5,7 +5,7 @@
             super();
 
             Object.defineProperty(this, "cmdEvent", {
-                value: (e) => {
+                value: () => {
                     console.log("button clicked")
                     let paragraph, sel, range, parent;
                     const editor = document.querySelector(".editor");
@@ -50,12 +50,12 @@
                                 if (window.getSelection) {
                                     let sel = window.getSelection();
                                     let rr = sel.getRangeAt(0);
-                                    rr.selectNode(this.active ? wrapperNode.parentNode: wrapperNode);
+                                    rr.selectNode(this.active ? wrapperNode.parentNode : wrapperNode);
                                     sel.removeAllRanges();
                                     sel.addRange(rr);
                                 }
                                 const regex = new RegExp(`<span class="selection-wrapper">|<\/span>/`, "g");
-                                wrapperNode.outerHTML=wrapperNode.outerHTML.replace(regex,"")
+                                wrapperNode.outerHTML = wrapperNode.outerHTML.replace(regex, "")
                             }
                         }
                     }
