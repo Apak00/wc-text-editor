@@ -1,5 +1,5 @@
 {
-  "name": "adesso-text-editor",
+  "name": "wc-test-text-editor",
   "version": "0.0.5",
   "description": "",
   "main": "./dist/main.js",
