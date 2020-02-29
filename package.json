@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "webpack-dev-server --mode='development' --open",
-    "build": "webpack --mode='production' && open ./dist/index.html",
-    "yolo": "webpack --mode='production' && git add . && git commit -m 'classic comment' && git push && npm version patch && npm publish"
+    "build": "webpack --mode=production && open ./dist/index.html",
+    "yolo": "webpack --mode=production && git add . && git commit -m 'classic' && git push && npm version patch && npm publish"
   },
   "author": "",
   "license": "ISC",
